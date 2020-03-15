@@ -7,7 +7,7 @@ ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://lukasfontanilla:LifeofRicee69@localhost:5432/smedb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = '<insert URI'>
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
