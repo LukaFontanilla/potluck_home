@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <title>Luka-Potluck-Home</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <nav>
+        <input type="checkbox" id="nav" class="hidden">
+        <label for="nav" class="nav-btn">
+          <i></i>
+          <i></i>
+          <i></i>
+        </label>
+        <div class="logo">
+          <a href="#">Potluck Home</a>
+        </div>
+        <div class="nav-wrapper">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#test">About</a></li>
+            <li><a href="/random">Random</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="inner">
+        <p id="demo">
+          <script>
+            // Set the date we're counting down to
+            var potluckCountDown = new Date("February 15, 2020 18:00:00").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = potluckCountDown - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Display the result in the element with id="demo"
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
+                minutes + "m " + seconds + "s ";
+
+              // If the count down is finished, write some text
+              if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+              }
+            }, 1000);
+
+          </script>
+        </p>
+        <img src="https://img.icons8.com/nolan/64/cheburashka.png" width="10%" height="auto" id="profile_pic">
+        <ul class="innerul">
+          <li class="innerli">お腹　は　突いてます？</li>
+        </ul>
+        <p id="main" name="test">Hi, cURLs! Welcome to the potluck home. Below you will find the details of the potluck, meal mains provided by your's truly, as well as a grocery list to cover additional desires of the appetite. 
+          If I could kindly request that y'all input your name and item(s) off the grocery list that you can bring below, I'd greatly appreciate it!</p>
+        <ul class="innerul1">
+          <li class="innerli1"><b>Address: </b>340 Highland Ave.</li>
+          <li class="innerli1"><b>Date&amp;Time: </b>Feb 15th 18:00</li>
+          <li class="innerli1"><b>----------------------------</b></li>
+        </ul>
+        <h1>Dinner Menu</h1>
+        <ul class="innerul1">
+          <li class="innerli1"><b font-size:15>Vegetarian Options</b></li>
+          <li class="innerli1">Yuca Frita | Savory Rice</li>
+          <li class="innerli1"><b font-size:15>Meat Options</b></li>
+          <li class="innerli1">Chicken Fried Rice</li>
+          <li class="innerli1"><b font-size:15>Beverages</b></li>
+          <li class="innerli1">Water | Tea | Juice | Spiked-Juice</li>
+        </ul>
+        <h2>Grocery List</h2>
+        <form action="/submit" method="POST">
+            <div class="form-group">
+              <h3>Name</h3>
+              <select name="Name">
+                <option value="">Select Name</option>
+                <option value="Mandy">Mandy</option>
+                <option value="Nathaniel">Nathaniel</option>
+                <option value="Srinija">Srinija</option>
+                <option value="Ryland">Ryland</option>
+                <option value="Leticia">Leticia</option>
+                <option value="Eugene">Eugene</option>
+                <option value="Owen">Owen</option>
+                <option value="Ryan">Ryan</option>
+                <option value="LukaPuka">LukaPuka</option>
+                <option value="test">test</option>
+              </select>
+            </div>
+        <h4>Items</h4>
+            <div class="form-group">
+              <select name="Items" onchange="otherSelectCheck(this);">
+                <option value="">Select Item</option>
+                <option value="Appetizers">Appetizer</option>
+                <option value="Beverages">Beverages</option>
+                <option id="other" value="Other">Other</option>
+              </select>
+            </div>
+            <script type="text/javascript">
+              function otherSelectCheck(foodSelect)
+  {
+      if(foodSelect){
+          otherValue = document.getElementById("other").value;
+          if(otherValue == foodSelect.value){
+              document.getElementById("optionDivCheck").style.display = "block";
+          }
+          else{
+              document.getElementById("optionDivCheck").style.display = "none";
+          }
+      }
+      else{
+          document.getElementById("optionDivCheck").style.display = "none";
+      }
+  };
+            </script>
+            <div id="optionDivCheck" style="display:none;">
+              <textarea 
+              name="dish_deetz" 
+              cols="30" 
+              rows="5"
+              placeholder="Please tell us about the dish you are bringing <3">
+              </textarea>
+            </div>
+          <input type="submit" value="Submit" class="button">
+        </form>
+        <div>
+          <script>
+            function doLoad() { 
+              var response = JSON.stringify(
+                {
+                  "type": "look:run" // then we run the request
+                }
+              );
+
+              var my_iframe = document.getElementById('looker')
+
+              my_iframe.contentWindow.postMessage(response,'https://localhost:9999');
+          }
+          </script>
+          <iframe id="looker" src='https://localhost:9999/embed/looks/6?embed_domain=http://127.0.0.1:5000' width='500' height='200' frameborder='5'></iframe>
+          <button onclick="doLoad()">CHANGE</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+</html>
